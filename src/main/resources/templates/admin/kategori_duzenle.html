@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kategori Düzenle</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            padding: 50px 20px;
+        }
+
+        .icerik {
+            max-width: 500px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            color: #243447;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            background-color: #2563eb;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="icerik">
+
+    <h1>Kategori Düzenle</h1>
+
+    <form th:action="@{/admin/kategori/duzenle/{id}(id=${kategori.id})}"
+          th:object="${kategori}"
+          method="post">
+
+        <label for="ad">Kategori Adı:</label>
+
+        <input type="text"
+               id="ad"
+               th:field="*{ad}"
+               required>
+
+        <button type="submit">Güncelle</button>
+
+    </form>
+
+    <p>
+        <a th:href="@{/admin/kategori/ekle}">
+            Kategori Yönetimine Dön
+        </a>
+    </p>
+
+</div>
+
+</body>
+</html>

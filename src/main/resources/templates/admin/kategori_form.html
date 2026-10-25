@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>eKitap - Kategori Yönetimi</title>
+</head>
+
+<body>
+
+    <div class="icerik">
+
+        <h1>Kategori Yönetimi</h1>
+
+        <h2>Mevcut Kategoriler</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Kategori Adı</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="k : ${kategoriler}">
+                    <td th:text="${k.id}"></td>
+                    <td th:text="${k.ad}"></td>
+
+                    <td>
+                        <a class="btn btn-duzenle"
+                           th:href="@{/admin/kategori/duzenle/{id}(id=${k.id})}">
+                            Düzenle
+                        </a>
+
+                        <form th:action="@{/admin/kategori/sil/{id}(id=${k.id})}"
+                              method="post"
+                              style="display:inline;">
+
+                            <button type="submit"
+                                    class="btn btn-sil"
+                                    onclick="return confirm('Bu kategoriyi silmek istiyor musunuz?')">
+                                Sil
+                            </button>
+
+                        </form>
+                    </td>
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(kategoriler)}">
+                    <td colspan="3">
+                        Henüz kategori eklenmedi.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="form-alani">
+
+            <h2>Yeni Kategori Ekle</h2>
+
+            <form th:action="@{/admin/kategori/ekle}"
+                  th:object="${kategori}"
+                  method="post">
+
+                <label for="ad">Kategori Adı:</label>
+
+                <input type="text"
+                       id="ad"
+                       th:field="*{ad}"
+                       placeholder="Kategori adını giriniz"
+                       required>
+
+                <button type="submit" class="btn btn-kaydet">
+                    Kaydet
+                </button>
+
+            </form>
+        </div>
+
+        <a class="geri" th:href="@{/admin}">
+            ← Yönetim Paneline Dön
+        </a>
+
+    </div>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .icerik {
+            max-width: 800px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            color: #243447;
+            text-align: center;
+        }
+
+        h2 {
+            color: #243447;
+            margin-top: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f4f6f9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 9px 15px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-duzenle {
+            background-color: #2563eb;
+        }
+
+        .btn-sil {
+            background-color: #dc2626;
+        }
+
+        .btn-kaydet {
+            background-color: #16a34a;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+
+        .form-alani {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f4f6f9;
+            border-radius: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 70%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-right: 10px;
+        }
+
+        .geri {
+            display: inline-block;
+            margin-top: 25px;
+            color: #2563eb;
+            text-decoration: none;
+        }
+    </style>
+
+</body>
+</html>

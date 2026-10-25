@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>eKitap - Yönetim Paneli</title>
+</head>
+
+<body>
+
+    <h1>eKitap Yönetim Paneli</h1>
+
+    <div class="menuButonu">
+
+        <a class="buton" th:href="@{/admin/kitap/ekle}">
+            Kitap Ekle
+        </a>
+
+        <a class="buton" th:href="@{/admin/kategori/ekle}">
+            Kategori Ekle
+        </a>
+
+        <a class="buton" th:href="@{/admin/sepet/yonet}">
+            Sepeti Yönet
+        </a>
+
+        <a class="buton" th:href="@{/admin/siparis/yonet}">
+            Siparişleri Yönet
+        </a>
+
+    </div>
+
+
+    <!-- CSS KODLARI -->
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            text-align: center;
+            margin: 0;
+            padding: 50px 20px;
+        }
+
+        h1 {
+            color: #243447;
+        }
+
+        .menuButonu {
+            display: grid;
+            grid-template-columns: repeat(2, 220px);
+            justify-content: center;
+            gap: 20px;
+            margin-top: 35px;
+        }
+
+        .buton {
+            background-color: #2563eb;
+            color: white;
+            padding: 35px 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .buton:hover {
+            background-color: #1d4ed8;
+        }
+    </style>
+
+</body>
+</html>
